@@ -11,9 +11,10 @@ workflow template for webpack, scss, and asset processing.
 Below is the file structure that is used by the configuration.
 
 ```bash
+template
 ├───src
-│   ├───fonts   # woff, woff2, eot, ttf, otf
-│   ├───img     # png, svg, jpg, gif, webp
+│   ├───fonts       # woff, woff2, eot, ttf, otf
+│   ├───img         # png, svg, jpg, gif, webp
 │   ├───js
 │   │   └───index.js # + other js files
 │   ├───scss
@@ -25,7 +26,7 @@ Below is the file structure that is used by the configuration.
 ├───package.json    # npm packages + scripts
 ├───webpack.base.js # webpack base config
 ├───webpack.dev.js  # webpack dev config
-├───webpack.prod.js # webpack production config
+└───webpack.prod.js # webpack production config
 ```
 
 ## Processes
