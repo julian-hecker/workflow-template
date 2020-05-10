@@ -1,0 +1,42 @@
+// ********
+// Global Properties
+// ********
+
+*, *::before, *::after {
+    // Having this inherited instead of
+    // Applied directly to all elements
+    // will allow easier integration
+    // of older components that do not
+    // use this property
+    box-sizing: inherit;
+    // Remove default spacings; will re-apply (typography)
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    // all new components will inherit
+    // this property from parents
+    box-sizing: border-box;
+    // makes html fill viewport
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    // Remove default page spacing, again
+    margin: 0;
+    // makes body fill viewport
+    height: 100%;
+    
+    // Should include page color, font
+
+    // Do not explicitly set font size,
+    // will prevent users from customizing
+}
+
+img {
+    display: block; // Removes extra line-height spacing.
+    max-width: 100%; // Prevents overflowing containers
+}
+

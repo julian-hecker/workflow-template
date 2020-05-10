@@ -1,0 +1,47 @@
+/*
+ *  SCSS Style Template
+ *  By Julian Hecker
+ *  https://github.com/julian-hecker/
+ */
+
+// === Base Styles ===
+@import 'base/vars';
+@import 'base/functions';
+@import 'base/mixins';
+@import 'base/global';
+
+// === Modules ===
+@import 'modules/_grid.scss';
+// create section
+// create section-title
+// create hero-section
+// create button
+// create separate container module
+// create headline
+// create generic content container
+// create modules for specific page sections and components: testimonials, features
+
+
+// === Utilities ===
+@import 'utilities/_spacing.scss';
+
+
+/*
+ *  To Do
+ *  Refactor responsive mixins
+ *  Integrate React somehow
+ *      To use in react + css modules, simply @import 
+ *      base styles (vars, funcs, mixins) and 
+ *      `import {classes} from './File.module.scss';`
+ *  
+ *  Add scripts, html to workflow (dist)
+ *  Add gap-size utils (grid--gap-0, grid--gap-2@sm
+ *  add container--fluid, container--no-gap
+ *  create reveal-on-scroll class
+ *  use fewer media queries, group them together!
+ *  refactor webpack into separate files
+ *      https://simonsmith.io/organising-webpack-config-environments
+ *  learn about standardjs, gatsby, nextjs
+ *  look into purgcss webpack
+ */ 
+

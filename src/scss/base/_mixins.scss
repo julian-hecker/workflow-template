@@ -1,0 +1,46 @@
+// Responsive Mixins
+// Mobile-First
+
+
+@mixin smUp {
+    @media (min-width: nth(nth($grid-bkpts, 1), 2)) {
+        @content;
+    }
+}
+@mixin mdUp {
+    @media (min-width: nth(nth($grid-bkpts, 2), 2)) {
+        @content;
+    }
+}
+@mixin lgUp {
+    @media (min-width: nth(nth($grid-bkpts, 3), 2)) {
+        @content;
+    }
+}
+@mixin xlUp {
+    @media (min-width: nth(nth($grid-bkpts, 4), 2)) {
+        @content;
+    }
+}
+
+// Desktop-First
+@mixin smDown {
+    @media (max-width: nth(nth($grid-bkpts, 1), 2)) {
+        @content;
+    }
+}
+@mixin mdDown {
+    @media (max-width: nth(nth($grid-bkpts, 2), 2)) {
+        @content;
+    }
+}
+@mixin lgDown {
+    @media (max-width: nth(nth($grid-bkpts, 3), 2)) {
+        @content;
+    }
+}
+@mixin xlDown {
+    @media (max-width: nth(nth($grid-bkpts, 4), 2)) {
+        @content;
+    }
+}

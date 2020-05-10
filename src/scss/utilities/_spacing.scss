@@ -1,0 +1,75 @@
+// ****
+// Spacing.scss
+// Responsive Margin, padding, etc
+// ****
+
+
+$spacing-properties: (
+    'm': 'margin',
+    'p': 'padding',
+);
+
+$directions: (
+    '': '',
+    'y': (
+        '-top',
+        '-bottom',
+    ),
+    'x': (
+        '-right',
+        '-left',
+    ),
+    't': '-top',
+    'r': '-right',
+    'b': '-bottom',
+    'l': '-left',
+);
+
+$spacing-sizes: (
+    '0': 0,
+    '05': 0.5rem,
+    '1': 1rem,
+    '2': 2rem,
+    '3': 3rem,
+    '4': 4rem,
+);
+
+// generate spacing utility classes
+@each $prop, $property in $spacing-properties {
+    @each $dir, $direction in $directions {
+        @each $length, $value in $spacing-sizes {
+            .#{$prop}#{$dir}-#{$length} {
+                @if (type-of($direction) == 'list') {
+                    @each $direction in $direction {
+                        #{$property}#{$direction}: $value;
+                    }
+                } @else {
+                    #{$property}#{$direction}: $value;
+                }
+            }
+        }
+    }
+}
+
+// generate responsive utility classes
+@each $bkpt, $width in $grid-bkpts {
+    @media (min-width: $width) {
+        @each $prop, $property in $spacing-properties {
+            @each $dir, $direction in $directions {
+                @each $length, $value in $spacing-sizes {
+                    .#{$prop}#{$dir}-#{$length}\@#{$bkpt} {
+                        @if $dir == 'y' {
+                            #{$property}-top: $value;
+                            #{$property}-bottom: $value;
+                        } @else if $dir == 'x' {
+                            #{$property}-right: $value;
+                            #{$property}-left: $value;
+                        } @else {
+                            #{$property}#{$direction}: $value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

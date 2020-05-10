@@ -1,0 +1,174 @@
+.container {
+    // thanks to bootstrap
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    // remove padding on nested containers
+    .container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    @each $bkpt, $width, $cnt-width in $grid-bkpts {
+        @media (min-width: $width) {
+            & {
+                max-width: $cnt-width;
+            }
+        }
+    }
+}
+
+// ****
+// Gridify
+// a simple, responsive layout
+// implementation that uses CSS grid.
+// ****
+
+%grid-container {
+    display: grid;
+    gap: 1rem;
+}
+
+.grid {
+    // grid container utilities
+    &--no-gap {
+        gap: 0;
+    }
+
+    // default grid properties
+    @extend %grid-container;
+    grid-template-columns: repeat(12, 1fr);
+
+    // generate grids
+    @for $cols from 1 through $grid-cols {
+        &-#{$cols} {
+            @extend %grid-container;
+            grid-template-columns: repeat($cols, 1fr);
+        }
+    }
+    // generate responsive grids
+    @each $bkpt, $width in $grid-bkpts {
+        @media (min-width: $width) {
+            &\@#{$bkpt} {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            @for $cols from 2 through $grid-cols {
+                &-#{$cols}\@#{$bkpt} {
+                    @extend .grid\@#{$bkpt};
+                    grid-template-columns: repeat($cols, 1fr);
+                }
+            }
+        }
+    }
+}
+
+// grid columns
+%col-template {
+    display: block;
+}
+
+.col {
+    // generate column selectors
+    @for $cols from 0 through $grid-cols {
+        &-#{$cols} {
+            @if $cols != 0 {
+                @extend %col-template;
+                grid-column: span $cols;
+            } @else {
+                display: none;
+            }
+        }
+    }
+    // responsive column selectors
+    @each $bkpt, $width in $grid-bkpts {
+        @media (min-width: $width) {
+            &\@#{$bkpt} {
+                display: block;
+            }
+            @for $cols from 0 through $grid-cols {
+                &-#{$cols}\@#{$bkpt} {
+                    @if $cols != 0 {
+                        @extend .col\@#{$bkpt};
+                        grid-column: span $cols;
+                    } @else {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // order
+    @for $order from (round(-$grid-cols / 2)) through (round($grid-cols / 2)) {
+        // negative orders are prefixed with 'n'
+        @if $order < 0 {
+            &-ord-n#{-1 * $order} {
+                order: $order;
+            }
+        } @else {
+            &-ord-#{$order} {
+                order: $order;
+            }
+        }
+    }
+    // responsive order
+    @each $bkpt, $width in $grid-bkpts {
+        @media (min-width: $width) {
+            @for $order
+                from (round(-$grid-cols / 2))
+                through (round($grid-cols / 2))
+            {
+                // negative orders are prefixed with 'n'
+                @if $order < 0 {
+                    &-ord-n#{-1 * $order}--#{$bkpt} {
+                        order: $order;
+                    }
+                } @else {
+                    &-ord-#{$order}\@#{$bkpt} {
+                        order: $order;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// .row {
+//     display: flex;
+//     flex-wrap: wrap;
+// }
+
+// .col {
+//     // equal width columns (default)
+//     flex: 1 0 0%;
+//     min-width: 0;
+
+//     // manual width columns
+//     @for $i from 0 through $grid-cols {
+//         &-#{$i} {
+//             // .col-3
+//             flex: 0 0 auto;
+//             width: ($i / $grid-cols) * 100%;
+//         }
+//     }
+//     // Responsive columns
+//     @each $bkpt, $width in $grid-bkpts {
+//         @media (min-width: $width) {
+//             // equal width columns
+//             &--#{$bkpt} {
+//                 flex: 1 0 0%;
+//                 min-width: 0;
+//             }
+//             // manual width columns
+//             @for $i from 0 through $grid-cols {
+//                 &-#{$i}--#{$bkpt} {
+//                     flex: 0 0 auto;
+//                     width: ($i / $grid-cols) * 100%;
+//                 }
+//             }
+//         }
+//     }
+// }

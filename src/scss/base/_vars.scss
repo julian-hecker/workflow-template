@@ -1,0 +1,13 @@
+// ****
+// Variables
+// ****
+
+// Grid Variables
+$grid-bkpts: (
+    // bkpt name, width, container size
+    'sm' 600px 550px,
+    'md' 900px 850px,
+    'lg' 1200px 1100px,
+    'xl' 1600px 1500px
+);
+$grid-cols: 12;
