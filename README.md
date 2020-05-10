@@ -1,6 +1,11 @@
 # workflow-template
 workflow template for webpack, scss, and asset processing.
 
+## Scripts
+`npm run dev` starts a development server which will actively reload changes made in the text editor.
+
+`npm run build` will create a static build with all the dependencies bundled and ready to be copied to a server.
+
 
 ## File Structure
 Below is the file structure that is used by the configuration.
@@ -60,7 +65,4 @@ Image files are minified and copied to `/dist/img`, while fonts are not minified
 Rather than creating files, builds are streamed directly into the dev server's memory and synchronized with the browser. 
 
 SCSS is compiled with sourcemaps, which makes debugging in the browser simpler. 
-
-
-
 
